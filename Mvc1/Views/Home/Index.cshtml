@@ -1,0 +1,23 @@
+@model List<Urun>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    <ol>
+        @foreach (var item in Model)
+        {
+            <li>@item.Ad - @item.Fiyat</li>
+        }
+    </ol>
+</div>
+</body>
+</html>
