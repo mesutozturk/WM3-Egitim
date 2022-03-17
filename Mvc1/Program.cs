@@ -1,9 +1,23 @@
 //Configure services
 
+using Microsoft.EntityFrameworkCore;
+using Mvc1.Data;
 using Mvc1.Services.Email;
 using SendGrid.Extensions.DependencyInjection;
 
+//mevcut bir dbden entityframework tablolarını aktarmak için
+//Scaffold-DbContext "Data Source=MESUT-WS;Initial Catalog=Northwind;User ID=sa;Password=123;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+string con1 = builder.Configuration.GetConnectionString("con1");
+
+builder.Services.AddDbContext<NorthwindContext>(options =>
+{
+    options.UseSqlServer(con1);
+});
+
 builder.Services.AddTransient<IMailService, YandexEmailService>();
 builder.Services.AddSendGrid(options =>
 {

@@ -1,4 +1,4 @@
-@model List<Urun>
+@model List<Mvc1.ViewModels.ProductListViewModel>
 
 @{
     Layout = null;
@@ -15,7 +15,7 @@
     <ol>
         @foreach (var item in Model)
         {
-            <li>@item.Ad - @item.Fiyat</li>
+            <li>@item.CategoryName - @item.ProductName - @item.UnitPrice</li>
         }
     </ol>
 </div>
