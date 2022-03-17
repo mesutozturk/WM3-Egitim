@@ -1,6 +1,14 @@
 //Configure services
-var builder = WebApplication.CreateBuilder(args);
 
+using Mvc1.Services.Email;
+using SendGrid.Extensions.DependencyInjection;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddTransient<IMailService, YandexEmailService>();
+builder.Services.AddSendGrid(options =>
+{
+    options.ApiKey = "Key";
+});
 builder.Services.AddControllersWithViews();
 // builder.Services.AddRazorPages();
 // builder.Services.AddServerSideBlazor();
